@@ -61,19 +61,12 @@
     
     CGFloat height = kMainHeight - WidthItem * 3;
     
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI / 4.0 * 3];
-    rotationAnimation.duration = 0.5;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.removedOnCompletion = NO;
-    rotationAnimation.fillMode = kCAFillModeForwards;
-    rotationAnimation.repeatCount = 1;
+    CABasicAnimation* rotationAnimation = [self basicAnimation:SD_DEGREES_TO_RADIANS(135)];
+    CASpringAnimation* rotationAnimation2 = [self clockwiseAnimation: SD_DEGREES_TO_RADIANS(-90)];
     [self.ivImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     
-    CASpringAnimation* rotationAnimation2 = [self clockwiseAnimation: SD_DEGREES_TO_RADIANS(-90)];
-     
+    
     [UIView animateWithDuration:0.55 animations:^{
         self.alpha = 1;
     }];
@@ -104,14 +97,7 @@
     //UIViewAnimationOptionCurveEaseIn  动画逐渐变慢。
     
     
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: -M_PI / 4.0 * 4];
-    rotationAnimation.duration = 0.5;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.removedOnCompletion = YES;
-    rotationAnimation.fillMode = kCAFillModeForwards;
-    rotationAnimation.repeatCount = 1;
+    CABasicAnimation* rotationAnimation = [self basicAnimation:SD_DEGREES_TO_RADIANS(-135)];
     [self.ivImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     
@@ -153,7 +139,20 @@
 
 
 #pragma mark - Animation
-
+//基本旋转
+- (CABasicAnimation *)basicAnimation:(CGFloat)angle{
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: angle];
+    rotationAnimation.duration = 0.5;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.additive = YES;
+    rotationAnimation.removedOnCompletion = NO;
+    rotationAnimation.fillMode = kCAFillModeForwards;
+    rotationAnimation.repeatCount = 1;
+    return rotationAnimation;
+}
+//仿真旋转
 - (CASpringAnimation *)clockwiseAnimation:(CGFloat)angle{
     CASpringAnimation* rotationAnimation;
     rotationAnimation = [CASpringAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -171,6 +170,8 @@
     NSLog(@"=======%f",rotationAnimation.settlingDuration);
     return rotationAnimation;
 }
+
+
 
 
 #pragma mark - New Configure
