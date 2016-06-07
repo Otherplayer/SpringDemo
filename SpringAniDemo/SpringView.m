@@ -97,7 +97,7 @@
     //UIViewAnimationOptionCurveEaseIn  动画逐渐变慢。
     
     
-    CABasicAnimation* rotationAnimation = [self basicAnimation:SD_DEGREES_TO_RADIANS(-135)];
+    CABasicAnimation* rotationAnimation = [self basicAnimation:SD_DEGREES_TO_RADIANS(-90)];
     [self.ivImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     
@@ -147,8 +147,8 @@
     rotationAnimation.duration = 0.5;
     rotationAnimation.cumulative = YES;
     rotationAnimation.additive = YES;
-    rotationAnimation.removedOnCompletion = NO;
     rotationAnimation.fillMode = kCAFillModeForwards;
+    rotationAnimation.removedOnCompletion = NO;
     rotationAnimation.repeatCount = 1;
     return rotationAnimation;
 }
