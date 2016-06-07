@@ -61,9 +61,9 @@
     
     CGFloat height = kMainHeight - WidthItem * 3;
     
-    CABasicAnimation* rotationAnimation = [self basicAnimation:SD_DEGREES_TO_RADIANS(135)];
-    CASpringAnimation* rotationAnimation2 = [self clockwiseAnimation: SD_DEGREES_TO_RADIANS(-90)];
-    [self.ivImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    CABasicAnimation* rotationAnimationPlus = [self basicAnimation:SD_DEGREES_TO_RADIANS(135)];
+    CASpringAnimation* rotationAnimationDynamic = [self clockwiseAnimation: SD_DEGREES_TO_RADIANS(-90)];
+    [self.ivImageView.layer addAnimation:rotationAnimationPlus forKey:@"rotationAnimation"];
     
     
     
@@ -73,7 +73,7 @@
     
     [UIView animateWithDuration:0.55 delay:0 usingSpringWithDamping:dumping initialSpringVelocity:velocity options:UIViewAnimationOptionCurveEaseOut animations:^{
         [self.btnReleaseDynamic setFrame:CGRectMake(GMarginWidth, height, WidthItem, WidthItem)];
-        [self.btnReleaseDynamic.layer addAnimation:rotationAnimation2 forKey:@"rotationDynamic"];
+        [self.btnReleaseDynamic.layer addAnimation:rotationAnimationDynamic forKey:@"rotationDynamic"];
     } completion:nil];
 
     [UIView animateWithDuration:0.20 delay:0.25 usingSpringWithDamping:0.25 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -82,7 +82,7 @@
     } completion:nil];
     [UIView animateWithDuration:0.55 delay:0.12 usingSpringWithDamping:dumping initialSpringVelocity:velocity options:UIViewAnimationOptionCurveEaseOut animations:^{
         [self.btnReleaseNotice setFrame:CGRectMake(kMainWidth - WidthItem - GMarginWidth, height, WidthItem, WidthItem)];
-        [self.btnReleaseNotice.layer addAnimation:rotationAnimation2 forKey:@"rotationNotice"];
+        [self.btnReleaseNotice.layer addAnimation:rotationAnimationDynamic forKey:@"rotationNotice"];
     } completion:nil];
     
     [UIView animateWithDuration:0.32 delay:0.36 usingSpringWithDamping:0.25 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -104,7 +104,6 @@
     
     [UIView animateWithDuration:0.1 animations:^{
         [self.btnReleaseNoticeTitle setAlpha:0];
-//        [self.btnReleaseNoticeTitle setFrame:CGRectMake(kMainWidth - WidthItem * 1.4, kMainHeight - WidthItem * 2, WidthItem, WidthItem/2.0)];
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.btnReleaseNotice setFrame:CGRectMake((kMainWidth - WidthCenter) / 2.0, kMainHeight - WidthCenter, WidthCenter, WidthCenter)];
@@ -117,7 +116,6 @@
     
     [UIView animateWithDuration:0.15 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
         [self.btnReleaseDynamicTitle setAlpha:0];
-//        [self.btnReleaseDynamicTitle setFrame:CGRectMake(WidthItem * 0.4, kMainHeight - WidthItem * 2, WidthItem, WidthItem/2.0)];
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.btnReleaseDynamic setFrame:CGRectMake((kMainWidth - WidthCenter) / 2.0, kMainHeight - WidthCenter, WidthCenter, WidthCenter)];
