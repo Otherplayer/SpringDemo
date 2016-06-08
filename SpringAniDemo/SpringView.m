@@ -51,6 +51,9 @@
 }
 //推荐  0.6900//1.66952
 //推荐  0.58//12.54
+//推荐  0.58//3.467466
+//推荐  0.58//3.510274
+//推荐  0.58//11.34418
 
 - (void)show:(CGFloat)dumping v:(CGFloat)velocity{
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
